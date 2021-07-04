@@ -8,7 +8,7 @@
 
 1. Basel Atalla.
 2. Bayan Al-khateb.
-3. Dua'a Obaida
+3. Doa'a Obaidat
 4. Sewar Maqableh
 
 

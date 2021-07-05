@@ -5,6 +5,7 @@ import numpy as np
 from PIL import ImageGrab
 import pyttsx3
 import time
+import tkinter
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
@@ -30,7 +31,7 @@ def detecting_words(path):
     cv2.imshow('Detected words', img)
     cv2.waitKey(0)
     # print(txt)
-    speak(txt)
+    # speak(txt)
     return img, txt
 
 
@@ -65,4 +66,4 @@ def speak(txt):
     engine.runAndWait()
 
 
-detecting_words('data/hitchhikers-rotated.png')
+detecting_words('data/image.jpg')

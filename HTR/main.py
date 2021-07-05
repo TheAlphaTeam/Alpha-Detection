@@ -137,5 +137,5 @@ def speak(txt):
 if __name__=='__main__':
     detect_only_digit('data/sewar1.png')
     detect_Char('data/S-Z.png')
-    detecting_words('data/image.jpg')
+    detecting_words('data/hitchhikers-rotated.png')
     web_cam_capture(0)

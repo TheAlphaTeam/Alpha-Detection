@@ -14,18 +14,20 @@ import emoji
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
-
+image_txt = ''
+edited_img = ''
 HTR = Tk()
 HTR.iconbitmap('slogo.ico')
-HTR.title("HTR")
+HTR.title("AD")
 
 bg = ImageTk.PhotoImage(file="data/wp.jpg")
-canvas = Canvas(HTR, width=600, height=500)
+canvas = Canvas(HTR, width=700, height=600)
 canvas.pack(fill="both", expand=True)
 canvas.create_image(0, 0, image=bg, anchor="nw")
 
 img = PhotoImage(file="data/logo.png")
-canvas.create_image(150,60, anchor=NW, image=img)
+canvas.create_image(200,60, anchor=NW, image=img)
+
 
 def browse_button_word_detect():
     filename = filedialog.askopenfile()
@@ -50,11 +52,26 @@ def browse_button_translate():
     translate(filename.name)
 
 
+def browse_button_speak():
+    filename = filedialog.askopenfile()
+    print(filename)
+    read_words(filename.name)
+
+
+def read():
+    speak(image_txt)
+
+
+def show_img():
+    cv2.imshow('Detected words', edited_img)
+    cv2.waitKey(0)
+
+
 
 def window():
     newWindow = Toplevel(HTR)
     newWindow.iconbitmap('slogo.ico')
-    newWindow.title("HTR")
+    newWindow.title("AD")
     bg = ImageTk.PhotoImage(file="data/wp.jpg")
     canvas = Canvas(newWindow, width=500, height=600)
     canvas.pack(fill="both", expand=True)
@@ -72,7 +89,7 @@ def window():
     translate = Button(newWindow, text="Translate", command=browse_button_translate, bg='#FB405A', fg='#f2f2f2')
     translate.config(font=("serf bold", 15))
     translate.place(relx=0.15, rely=0.6, relwidth=.7, relheight=0.05)
-    voice = Button(newWindow, text="voice over", command=open, bg='#FB405A', fg='#f2f2f2')
+    voice = Button(newWindow, text="Read & Listen", command=browse_button_speak, bg='#FB405A', fg='#f2f2f2')
     voice.config(font=("serf bold", 15))
     voice.place(relx=0.15, rely=0.75, relwidth=.7, relheight=0.05)
 
@@ -141,6 +158,39 @@ def detecting_words(path):
 
     return img, txt
 
+def read_words(path):
+    global image_txt
+    global edited_img
+    img = cv2.imread(path)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    hImg, wImg, _ = img.shape
+    boxes = pytesseract.image_to_data(img)
+    txt = ''
+    for a, b in enumerate(boxes.splitlines()):
+        if a != 0:
+            b = b.split()
+            if len(b) == 12:
+                txt += f' {b[11]}'
+                x, y, w, h = int(b[6]), int(b[7]), int(b[8]), int(b[9])
+                cv2.putText(img, b[11], (x, y - 4), cv2.FONT_HERSHEY_SIMPLEX, .7, (50, 50, 255), 2)
+                cv2.rectangle(img, (x, y), (x + w, y + h), (50, 50, 255), 2)
+    edited_img = img
+    image_txt = txt
+    root=Toplevel(HTR)
+    root.title("AD")
+    root.geometry("600x600")
+    root.iconbitmap('slogo.ico')
+    T = Text(root,height=25, width=50,font=("Helvetica",18))
+    T.insert(END, txt)
+    T.pack()
+    speker = Button(T,height=1, width=15, text="Listen", command=read, bg='#FB405A', fg='#f2f2f2')
+    speker.config(font=("serf bold", 12))
+    speker.place(relx=0.6, rely=0.85)
+    show = Button(T, height=1, width=15, text="show detected text", command=show_img, bg='#FB405A', fg='#f2f2f2')
+    show.config(font=("serf bold", 12))
+    show.place(relx=0.2, rely=0.85)
+    root.mainloop()
+
 
 def translate(path):
     img = cv2.imread(path)
@@ -157,12 +207,13 @@ def translate(path):
 
     newWindow = Toplevel(HTR)
     newWindow.iconbitmap('slogo.ico')
-    newWindow.title("HTR")
+    newWindow.title("AD")
     T =Text(newWindow, height=15, width=40,font=("Helvetica",18))
     T.pack()
     T.insert('1.0',f' {txt} \n\n {blob.translate(to="ar")}')
     print('TR',blob.translate(to='ar'))
     newWindow.mainloop()
+
 
 
 #### Webcam Capture  ####

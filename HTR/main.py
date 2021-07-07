@@ -218,15 +218,14 @@ def translate(path):
 
 #### Webcam Capture  ####
 
-
+iter_img=0
 def web_cam_capture(path=0):
     cap = cv2.VideoCapture(path)
     cap.set(3, 1200)
     cap.set(4, 480)
-
     while True:
         _, img = cap.read()
-
+        cv2.imwrite("data/new_picture.jpg", img)
         hImg, wImg, _ = img.shape
         x1, y1, w1, h1 = 0, 0, hImg, wImg
         img_text = pytesseract.image_to_string(img)
@@ -237,10 +236,12 @@ def web_cam_capture(path=0):
             cv2.rectangle(img, (x, hImg - y), (w, hImg - h), (50, 50, 255), 2)
             cv2.putText(img, img_text, (x1 + int(w1 / 40), y1 + int(h1 / 40)), cv2.FONT_HERSHEY_SIMPLEX, .7,
                         (50, 50, 255), 2)
-            # cv2.putText(img, b[0], (x, hImg - y + 25), cv2.FONT_HERSHEY_SIMPLEX, 1, (50, 50, 255), 2)
         cv2.imshow("Result", img)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        time.sleep(.5)
+        if cv2.waitKey(1) & 0xFF == ord('c') or cv2.waitKey(1) & 0xFF == ord('q'):
+            cap.release()
+            cv2.destroyAllWindows()
+            read_words("data/new_picture.jpg")
             break
 
 

@@ -229,7 +229,7 @@ def translate(path):
 
 #### Webcam Capture  ####
 
-iter_img=0
+
 def web_cam_capture(path=0):
     cap = cv2.VideoCapture(path)
     cap.set(3, 1200)
@@ -248,7 +248,7 @@ def web_cam_capture(path=0):
             cv2.putText(img, img_text, (x1 + int(w1 / 40), y1 + int(h1 / 40)), cv2.FONT_HERSHEY_SIMPLEX, .7,
                         (50, 50, 255), 2)
         cv2.imshow("Result", img)
-        time.sleep(.5)
+        time.sleep(.7)
         if cv2.waitKey(1) & 0xFF == ord('c') or cv2.waitKey(1) & 0xFF == ord('q'):
             cap.release()
             cv2.destroyAllWindows()

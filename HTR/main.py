@@ -239,15 +239,16 @@ def web_cam_capture(path=0):
         cv2.imwrite("data/new_picture.jpg", img)
         hImg, wImg, _ = img.shape
         x1, y1, w1, h1 = 0, 0, hImg, wImg
-        img_text = pytesseract.image_to_string(img)
-        boxes = pytesseract.image_to_boxes(img)
-        for b in boxes.splitlines():
-            b = b.split(' ')
-            x, y, w, h = int(b[1]), int(b[2]), int(b[3]), int(b[4])
-            cv2.rectangle(img, (x, hImg - y), (w, hImg - h), (50, 50, 255), 2)
-            cv2.putText(img, img_text, (x1 + int(w1 / 40), y1 + int(h1 / 40)), cv2.FONT_HERSHEY_SIMPLEX, .7,
-                        (50, 50, 255), 2)
+        # img_text = pytesseract.image_to_string(img)
+        # boxes = pytesseract.image_to_boxes(img)
+        # for b in boxes.splitlines():
+        #     b = b.split(' ')
+        #     x, y, w, h = int(b[1]), int(b[2]), int(b[3]), int(b[4])
+        #     # cv2.rectangle(img, (x, hImg - y), (w, hImg - h), (50, 50, 255), 2)
+        #     # cv2.putText(img,'Press "C" from KeyBoard to Capture ', (x1 + int(w1 / 40), y1+200),cv2.FONT_HERSHEY_SIMPLEX, .7,(50, 50, 255), 2)
+        cv2.putText(img,'Press "C" from KeyBoard to Capture ', (75,450), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (20, 230, 20), 2)
         cv2.imshow("Result", img)
+
         time.sleep(.7)
         if cv2.waitKey(1) & 0xFF == ord('c') or cv2.waitKey(1) & 0xFF == ord('q'):
             cap.release()

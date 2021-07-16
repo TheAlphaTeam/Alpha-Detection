@@ -2,7 +2,7 @@
 
 - 401 Midtearm project
 
-- Name of  the team: Alpha.
+## Name of  the team: Alpha.
 
 - Team members :
 
@@ -13,10 +13,29 @@
 
 
 
-## Name of Project: Handwritten-Text-Recognition.
+## Name of Project: 
+- Handwritten-Text-Recognition.
 
 ## Our project:
 Handwritten Text Recognition (HTR) system implemented with TensorFlow (TF) and trained on the IAM off-line HTR dataset. The model takes images of single words or text lines (multiple words) as input and outputs the recognized text.
+
+## Running the Application:
+- download Tesseract from [Tesseract](https://tesseract-ocr.github.io/tessdoc/Downloads.html)
+- Open the project by PyCharm
+- Add this packages :
+   - OpenCv
+   - Pillow
+   - pytesseract
+   - pyttsx3
+   - time
+   - textblob
+   - playsound
+   - random
+   - gtts
+
+- run the program from PyCharm
+## Wireframe
+- ![project1]()
 
 ## project version: 
 

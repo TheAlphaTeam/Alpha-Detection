@@ -14,7 +14,7 @@
 Handwritten Text Recognition (HTR) system implemented with TensorFlow (TF) and trained on the IAM off-line HTR dataset. The model takes images of single words or text lines (multiple words) as input and outputs the recognized text.
 
 ## Running the Application:
-- download Tesseract from [Tesseract](https://tesseract-ocr.github.io/tessdoc/Downloads.html)
+- Download Tesseract from [Tesseract](https://tesseract-ocr.github.io/tessdoc/Downloads.html)
 - Open the project by PyCharm
 - Add these packages :
    - OpenCv
@@ -27,7 +27,7 @@ Handwritten Text Recognition (HTR) system implemented with TensorFlow (TF) and t
    - random
    - gtts
 
-- run the program from PyCharm
+- Run the program from PyCharm
 ## Wireframe:
 ![project1](HTR/data/project.png)
 

@@ -16,7 +16,7 @@ Handwritten Text Recognition (HTR) system implemented with TensorFlow (TF) and t
 ## Running the Application:
 - download Tesseract from [Tesseract](https://tesseract-ocr.github.io/tessdoc/Downloads.html)
 - Open the project by PyCharm
-- Add this packages :
+- Add these packages :
    - OpenCv
    - Pillow
    - pytesseract
@@ -80,4 +80,4 @@ version: 1.0.0
 ## Resources
 - [Text Detection with open-cv Tutorial](https://youtu.be/6DjFscX4I_c)
 
-- [Handwriting Recognission](https://www.pyimagesearch.com/2020/08/24/ocr-handwriting-recognition-with-opencv-keras-and-tensorflow/)
+- [Handwriting Recognission Tutorial](https://www.pyimagesearch.com/2020/08/24/ocr-handwriting-recognition-with-opencv-keras-and-tensorflow/)

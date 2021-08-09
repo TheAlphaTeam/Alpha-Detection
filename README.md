@@ -1,4 +1,4 @@
-# Handwritten-Text-Recognition Project
+# Alpha-Detection Project
 
 ##  Team Name: Alpha.
 
